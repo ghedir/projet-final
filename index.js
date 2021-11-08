@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.use("/images", express.static(path.join(__dirname, "/images")));
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 //connecting to database
 mongoose
   .connect(process.env.MONGO_URL || "mongodb://localhost/my_database", {
@@ -87,7 +87,6 @@ app.use("/api/categories", categoryRoute);
 
 // setup for deployment
 if (process.env.NODE_ENV === "production") {
-  
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
@@ -98,7 +97,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(port, () => {
+app.listen(port || 5000, () => {
   console.log(`listen to the port ${port}`);
 });
 // module.exports = router;
