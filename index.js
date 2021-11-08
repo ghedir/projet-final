@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.use("/images", express.static(path.join(__dirname, "/images")));
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 5000;
 //connecting to database
 mongoose
   .connect(process.env.MONGO_URL || "mongodb://localhost/my_database", {
