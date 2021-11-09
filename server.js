@@ -80,15 +80,15 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 // });
 // //routes
 // app.use(adminBro.options.rootPath, router);
-app.use("/api/auth", authRoute);
-app.use("/api/users", userRoute);
-app.use("/api/posts", postRoute);
-app.use("/api/categories", categoryRoute);
+app.use("/auth", authRoute);
+app.use("/users", userRoute);
+app.use("/posts", postRoute);
+app.use("/categories", categoryRoute);
 
 // setup for deployment
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-  app.get(/^\/(?!api).*/, (req, res) => {
+  app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client/build/index.html"));
     
   });
