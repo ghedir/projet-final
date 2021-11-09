@@ -5,7 +5,7 @@ import { Context } from "../../context/Context";
 
 export default function Profile() {
   const { user } = useContext(Context);
-  const PF = "http://localhost:5000/images/";
+  const PF = "/images/";
 
   return (
     <div className="profile">
