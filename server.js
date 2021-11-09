@@ -89,7 +89,7 @@ app.use("/api/categories", categoryRoute);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build/static"));
   app.get("*", (req, res) => {
-    res.sendFile(__dirname, "client/build/index.html");
+    res.sendFile(path.resolve(__dirname, "client/build/index.html"));
     
   });
 } else {
