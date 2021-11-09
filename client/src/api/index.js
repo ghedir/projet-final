@@ -1,4 +1,4 @@
 import axios from "axios";
-
-export const fetchPosts = () => axios.get("/posts");
-export const fetchCats = () => axios.get("/categories");
+url=''
+export const fetchPosts = () => axios.get(`${url}/posts`);
+export const fetchCats = () => axios.get(`${url}/categories`);
