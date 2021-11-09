@@ -20,7 +20,7 @@ app.use(express.json());
 
 app.use("/images", express.static(path.join(__dirname, "/images")));
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 //connecting to database
 mongoose
   .connect(process.env.MONGO_URI , {
@@ -97,7 +97,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(PORT || 5000, () => {
+app.listen(PORT , () => {
   console.log(`listen to the port ${PORT}`);
 });
 // module.exports = router;
