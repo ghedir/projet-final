@@ -20,7 +20,7 @@ export default function SideBar() {
     <div className="sidebar">
       <div className="sidebarItem">
         <span className="sidebarTitle">ABOUT ME</span>
-        <p>it's my persinal Ghedblog</p>
+        <p className="about-me">it's my personal Ghedblog</p>
         <img
           src="https://images.pexels.com/photos/3283121/pexels-photo-3283121.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=200"
           alt=""
