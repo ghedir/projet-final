@@ -23,9 +23,9 @@ export default function Home() {
       <Header />
       {loading ? (
         <div className="home">
-          {Array.isArray(posts) && posts.length > 0 ? (
+          
             <Posts posts={posts} />
-          ) : null}
+        
           <SideBar />
         </div>
       ) : null}

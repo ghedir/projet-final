@@ -84,13 +84,12 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/categories", categoryRoute);
-
 // setup for deployment
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static('client/build'));
+  app.use(express.static(__dirname + 'client/build'));
  
-  app.get(/^\/(?!api).*/, (req, res) => {
-    res.sendFile(path.join(__dirname, './client/build/index.html'));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + 'client/build/index.html'));
     
   });
 } else {
