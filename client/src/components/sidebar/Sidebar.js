@@ -1,20 +1,21 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./sidebar.css";
-import { useDispatch, useSelector } from "react-redux";
-import getCats from "../../redux/actions/category";
+// import { useDispatch, useSelector } from "react-redux";
+// import getCats from "../../redux/actions/category";
 import {useLocation} from 'react-router-dom';
 export default function SideBar() {
-  const [loading, setLoading] = useState(false);
-  const cats = useSelector((state) => state.cats);
-  const { search } = useLocation();
-
-  const dispatch = useDispatch();
-
+  const [cats, setCats] = useState([]);
+const { search } = useLocation();
   useEffect(() => {
-    dispatch(getCats());
-    setLoading(true);
-  }, [dispatch,search]);
+    const getCats = async () => {
+      const res = await axios.get("/categories" + search);
+      setCats(res.data);
+    };
+    getCats();
+  }, [search]);
+
 
   return (
     <div className="sidebar">
@@ -25,23 +26,18 @@ export default function SideBar() {
           src="https://images.pexels.com/photos/3283121/pexels-photo-3283121.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=200"
           alt=""
         />
-
-        
       </div>
       <div className="sidebarItem">
         <span className="sidebarTitle">CATEGORIES</span>
-        {loading ? (
+        
           <ul className="sidebarList">
-            {Array.isArray(cats) && cats.length > 0
-              ? cats.map((cat) => (
+            {cats.map((cat) => (
                   <Link to={`/?cat=${cat.name}`} className="link" key={cat}>
                     <li className="sidebarListItem">{cat.name}</li>
                   </Link>
-                ))
-              : null}
+                ))}
           </ul>
-        ) : null}
-      </div>
+  </div>
       <div className="sidebarItem">
         <span className="sidebarTitle"> FOLLOW US</span>
         <div className="sidebarSocial">

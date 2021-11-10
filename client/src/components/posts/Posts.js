@@ -1,11 +1,11 @@
 import React from "react";
-import {useSelector} from 'react-redux';
+// import {useSelector} from 'react-redux';
 import Post from "../post/Post";
 import "./posts.css";
 
-export default function Posts({}) {
+export default function Posts({posts}) {
   
-  const posts = useSelector((state)=> state.posts)
+  // const posts = useSelector((state)=> state.posts)
   
  
   return (

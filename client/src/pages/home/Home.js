@@ -5,30 +5,33 @@ import Header from "../../components/header/Header";
 import "./home.css";
 
 import { useLocation } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import getPosts from "../../redux/actions/posts";
+// import { useDispatch, useSelector } from "react-redux";
+// import getPosts from "../../redux/actions/posts";
+import axios from "axios";
+
 
 export default function Home() {
-  const [loading, setLoading] = useState(false);
-  const posts = useSelector((state) => state.posts);
-  const dispatch = useDispatch();
+  const [posts, setPosts] = useState([]);
   const { search } = useLocation();
 
   useEffect(() => {
-    dispatch(getPosts());
-    setLoading(true);
-  }, [dispatch, search]);
+    const fetchPosts = async () => {
+      const res = await axios.get("/posts" + search);
+      setPosts(res.data);
+    };
+    fetchPosts();
+  }, [search]);
   return (
     <>
       <Header />
-      {loading ? (
+     
         <div className="home">
           
             <Posts posts={posts} />
         
           <SideBar />
         </div>
-      ) : null}
+     
     </>
   );
 }
